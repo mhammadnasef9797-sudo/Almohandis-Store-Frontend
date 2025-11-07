@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import apiClient from '../api';
+import apiClient from '../api.js';
 
 // 1. إنشاء الـ Context
 const AuthContext = createContext(null);

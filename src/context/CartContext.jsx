@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import apiClient from '../api'; // <-- 1. استيراد الملف المركزي الجديد
+import apiClient from '../api.js'; // <-- 1. استيراد الملف المركزي الجديد
 import { useAuth } from './AuthContext'; // <-- 2. استيراد سياق المصادقة
 
 const CartContext = createContext();

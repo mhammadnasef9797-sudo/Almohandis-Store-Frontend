@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import apiClient from '../api';
+import apiClient from '../api.js';
 import ProductCard from '../components/ProductCard'; // سنعيد استخدام بطاقة المنتج
 import './ProductsPage.css'; // سنعيد استخدام نفس تنسيق شبكة المنتجات
 

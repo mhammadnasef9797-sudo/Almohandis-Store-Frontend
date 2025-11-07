@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import apiClient from '../api';
+import apiClient from '../api.js';
 import { useAuth } from '../context/AuthContext';
 import ProductCard from '../components/ProductCard';
 import './ProductsPage.css';

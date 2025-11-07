@@ -1,4 +1,4 @@
-import apiClient from '../api';
+import apiClient from '../api.js';
 
 // 1. Create a new axios instance
 const apiClient = apiClient.create({
