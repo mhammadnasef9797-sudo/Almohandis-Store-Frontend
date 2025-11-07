@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../api'; // <-- 1. استيراد الملف المركزي الجديد
 
 function CheckoutPage() {
   const [address, setAddress] = useState('');
@@ -14,16 +14,15 @@ function CheckoutPage() {
     setMessage('');
 
     try {
-      const response = await axios.post(
-        `http://localhost:5297/api/orders?shippingAddress=${encodeURIComponent(address)}`
+      // 2. استخدام apiClient بدلاً من axios وحذف الرابط الطويل
+      const response = await apiClient.post(
+        `/orders?shippingAddress=${encodeURIComponent(address)}`
       );
       
       setMessage(`تم إنشاء طلبك بنجاح! رقم الطلب: ${response.data.orderId}. سيتم توجيهك للصفحة الرئيسية...`);
       
-      // Hide form and button after success
       e.target.style.display = 'none';
 
-      // توجيه المستخدم بعد 5 ثوانٍ
       setTimeout(() => {
         navigate('/');
       }, 5000);

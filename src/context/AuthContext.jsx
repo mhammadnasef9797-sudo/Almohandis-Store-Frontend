@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../api';
 
 // 1. إنشاء الـ Context
 const AuthContext = createContext(null);
@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
     const tokenFromStorage = localStorage.getItem('authToken');
     if (tokenFromStorage) {
       // إذا وجدنا توكن، نضعه في إعدادات axios الافتراضية
-      axios.defaults.headers.common['Authorization'] = `Bearer ${tokenFromStorage}`;
+      apiClient.defaults.headers.common['Authorization'] = `Bearer ${tokenFromStorage}`;
       setToken(tokenFromStorage);
     }
     // بعد الانتهاء من التحقق، نوقف حالة التحميل
@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
   // دالة لتسجيل الدخول
   const login = (newToken) => {
     // نضع التوكن في إعدادات axios
-    axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     // نحفظه في localStorage
     localStorage.setItem('authToken', newToken);
     // نحدث الحالة ليتم إعادة رسم المكونات التي تعتمد عليه
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
   // دالة لتسجيل الخروج
   const logout = () => {
     // نحذف التوكن من إعدادات axios
-    delete axios.defaults.headers.common['Authorization'];
+    delete apiClient.defaults.headers.common['Authorization'];
     // نحذفه من localStorage
     localStorage.removeItem('authToken');
     // نحدث الحالة إلى null

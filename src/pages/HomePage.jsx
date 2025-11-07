@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../api';
 import HeroSlider from '../components/HeroSlider';
 import OfferBanners from '../components/OfferBanners';
 import ProductSlider from '../components/ProductSlider';
@@ -14,7 +14,7 @@ function HomePage() {
         // ملاحظة: هذا الطلب سيعمل فقط إذا كان المستخدم مسجلاً دخوله.
         // لاحقاً، يمكننا إنشاء endpoint مخصص في الـ API للمنتجات المعروضة
         // لا يتطلب تسجيل دخول.
-        const response = await axios.get('http://localhost:5297/api/products');
+        const response = await apiClient.get('/products');
         setProducts(response.data);
       } catch (error) {
         console.error("Could not fetch products for homepage. This might be because you are not logged in.", error);

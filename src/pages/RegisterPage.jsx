@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import apiClient from '../api';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
@@ -20,7 +20,7 @@ function RegisterPage() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:5297/api/users/register', formData);
+      await apiClient.post('/users/register', formData);
       alert('تم إنشاء الحساب بنجاح! سيتم توجيهك لصفحة تسجيل الدخول.');
       navigate('/login');
     } catch (err) {

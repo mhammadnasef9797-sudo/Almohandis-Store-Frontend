@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -6,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid, faShare, faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import RatingStars from './RatingStars';
+import apiClient from '../api'; // <--- 1. استيراد الملف المركزي الجديد
 import './ProductCard.css';
 
 function ProductCard({ product }) {
@@ -16,9 +16,10 @@ function ProductCard({ product }) {
   const isInWishlist = wishlist?.some(item => item.productId === product.id);
 
   const handleAddToCart = async () => {
-    if (isInCart) return; // Don't add if already in cart
+    if (isInCart) return;
     try {
-      await axios.post(`http://localhost:5297/api/shoppingcart/items?productId=${product.id}&quantity=1`);
+      // 2. استخدام apiClient بدلاً من axios وحذف الرابط الطويل
+      await apiClient.post(`/shoppingcart/items?productId=${product.id}&quantity=1`);
       refreshCart();
       toast(
         <div className='toast-wrapper'>
@@ -36,10 +37,12 @@ function ProductCard({ product }) {
   const handleWishlistToggle = async () => {
     try {
       if (isInWishlist) {
-        await axios.delete(`http://localhost:5297/api/wishlist/${product.id}`);
+        // 3. استخدام apiClient هنا أيضاً
+        await apiClient.delete(`/wishlist/${product.id}`);
         toast.error('تم الحذف من المفضلة.');
       } else {
-        await axios.post(`http://localhost:5297/api/wishlist/${product.id}`);
+        // 4. وهنا أيضاً
+        await apiClient.post(`/wishlist/${product.id}`);
         toast.success('تمت الإضافة إلى المفضلة!');
       }
       refreshCart();

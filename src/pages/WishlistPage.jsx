@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../api';
 import ProductCard from '../components/ProductCard'; // سنعيد استخدام بطاقة المنتج
 import './ProductsPage.css'; // سنعيد استخدام نفس تنسيق شبكة المنتجات
 
@@ -11,7 +11,7 @@ function WishlistPage() {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await axios.get('http://localhost:5297/api/wishlist');
+        const response = await apiClient.get('/wishlist');
         // الـ API يعيد قائمة WishlistItem، ونحن نحتاج فقط للمنتج بداخلها
         const products = response.data.map(item => item.product);
         setWishlistItems(products);

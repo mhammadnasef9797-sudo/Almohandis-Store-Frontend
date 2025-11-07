@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../api'; // <--- 1. استيراد الملف المركزي الجديد
 import './CartPage.css';
 
 function CartPage() {
@@ -10,7 +10,8 @@ function CartPage() {
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get('http://localhost:5297/api/shoppingcart');
+      // 2. استخدام apiClient بدلاً من axios وحذف الرابط الطويل
+      const response = await apiClient.get('/shoppingcart');
       setCart(response.data);
     } catch (err) {
       console.error("Failed to fetch cart:", err);
@@ -24,15 +25,15 @@ function CartPage() {
   }, []);
 
   const handleUpdateQuantity = async (itemId, newQuantity) => {
-    // منع تحديث الكمية إلى أقل من 1 من الواجهة (الـ Backend يعالج الحذف عند 0)
     if (newQuantity < 1) {
       handleRemoveItem(itemId);
       return;
     }
 
     try {
-      const response = await axios.put(`http://localhost:5297/api/shoppingcart/items/${itemId}?quantity=${newQuantity}`);
-      setCart(response.data); // تحديث السلة بالبيانات الجديدة من الـ API
+      // 3. استخدام apiClient هنا أيضاً
+      const response = await apiClient.put(`/shoppingcart/items/${itemId}?quantity=${newQuantity}`);
+      setCart(response.data);
     } catch (error) {
       console.error("Failed to update quantity:", error);
       alert("فشل في تحديث الكمية.");
@@ -41,7 +42,8 @@ function CartPage() {
 
   const handleRemoveItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5297/api/shoppingcart/items/${itemId}`);
+      // 4. وهنا أيضاً
+      await apiClient.delete(`/shoppingcart/items/${itemId}`);
       fetchCart();
     } catch (err) {
       alert('فشل في حذف المنتج.');
@@ -67,7 +69,6 @@ function CartPage() {
               <h3>{item.productName}</h3>
               <p className="item-price">السعر للقطعة: {item.price.toFixed(2)} دينار</p>
 
-              {/* ▼▼▼ هذا هو الجزء الجديد لأزرار الكمية ▼▼▼ */}
               <div className="quantity-control">
                 <button
                   onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
@@ -96,7 +97,7 @@ function CartPage() {
       <div className="cart-summary">
         <h2>الإجمالي النهائي: {calculateTotal().toFixed(2)} دينار</h2>
         <button className="btn checkout-btn" onClick={() => navigate('/checkout')}>
-          الانتقال إلى الدفع
+           والانتقال إلى الدفع
         </button>
       </div>
     </div>

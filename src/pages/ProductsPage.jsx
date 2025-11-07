@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../api';
 import { useAuth } from '../context/AuthContext';
 import ProductCard from '../components/ProductCard';
 import './ProductsPage.css';
@@ -19,7 +19,7 @@ function ProductsPage() {
       }
 
       try {
-        const response = await axios.get('http://localhost:5297/api/products', {
+        const response = await apiClient.get('/products', {
           headers: {
             Authorization: `Bearer ${token}`
           }
