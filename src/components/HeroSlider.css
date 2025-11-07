@@ -1,0 +1,16 @@
+.hero-slider-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.mySwiper {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mySwiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: var(--main_color) !important;
+}

@@ -1,0 +1,79 @@
+.cart-container { /* ... (CSS for cart page) ... */ }
+.cart-item { display: flex; align-items: center; margin-bottom: 1rem; background: #fff; padding: 1rem; border-radius: 8px; }
+.cart-item img { width: 100px; height: 100px; object-fit: cover; margin-right: 1rem; }
+.item-details { flex-grow: 1; }
+.remove-btn { background: #e74c3c; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 4px; }
+.cart-summary { margin-top: 2rem; padding: 1rem; background: #fff; text-align: right; }
+.checkout-btn { width: auto; }
+
+/* ... (التنسيقات القديمة) ... */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* التنسيق المشترك لكلا الزرين */
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border_color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  color: var(--white_color); /* اللون الأبيض للنص/الأيقونة */
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* لون زر الزيادة (الأخضر) */
+.increase-btn {
+  background-color: #28a745; /* لون أخضر للنجاح */
+  border-color: #28a745;
+}
+.increase-btn:hover {
+  background-color: #218838; /* أخضر أغمق عند المرور */
+  transform: scale(1.1);
+}
+
+/* لون زر النقصان (الأحمر) */
+.decrease-btn {
+  background-color: #dc3545; /* لون أحمر للخطر/الحذف */
+  border-color: #dc3545;
+}
+.decrease-btn:hover {
+  background-color: #c82333; /* أحمر أغمق عند المرور */
+  transform: scale(1.1);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95); /* تأثير الضغط لكلا الزرين */
+     background-color: var(--white_color); /* تغيير الخلفية إلى الأبيض */
+    color: var(--color_heading); /* تغيير لون الأيقونة +/- إلى الداكن */
+    border-color: var(--color_heading);
+}
+
+.quantity-control span {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.item-price {
+    color: var(--p_color);
+    font-size: 0.9rem;
+}
+
+.item-total {
+    margin-left: auto;
+    text-align: left;
+}
+.item-total p {
+    font-weight: bold;
+    color: var(--color_heading);
+    margin-bottom: 0.5rem;
+}

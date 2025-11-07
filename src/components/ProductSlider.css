@@ -1,0 +1,13 @@
+.product-slider-section {
+  margin-bottom: 3rem;
+}
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--main_color);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+.product-swiper {
+  padding-bottom: 1rem; /* Space for scrollbar if any */
+}
