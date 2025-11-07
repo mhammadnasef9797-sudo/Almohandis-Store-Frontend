@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid, faShare, faCartPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import RatingStars from './RatingStars';
-import apiClient from '../api.js'; // <--- 1. استيراد الملف المركزي الجديد
+import apiClient from '@/api.js'; // <--- 1. استيراد الملف المركزي الجديد
 import './ProductCard.css';
 
 function ProductCard({ product }) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import apiClient from '../api.js';
+import apiClient from '@/api.js';
 import HeroSlider from '../components/HeroSlider';
 import OfferBanners from '../components/OfferBanners';
 import ProductSlider from '../components/ProductSlider';

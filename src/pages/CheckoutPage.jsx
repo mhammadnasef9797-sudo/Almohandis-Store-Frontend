@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../api.js'; // <-- 1. استيراد الملف المركزي الجديد
+import apiClient from '@/api.js'; // <-- 1. استيراد الملف المركزي الجديد
 
 function CheckoutPage() {
   const [address, setAddress] = useState('');

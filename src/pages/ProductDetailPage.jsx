@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import apiClient from '../api.js'; // استيراد الملف المركزي
+import apiClient from '@/api.js'; // استيراد الملف المركزي
 import { useCart } from '../context/CartContext'; // <-- 1. استيراد سياق السلة
 import { toast } from 'react-toastify'; // <-- 2. استيراد إشعارات التوست
 import './ProductDetailPage.css';
